@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.vr.autorizador.controller.cartao.exception.CartaoInvalidoException;
 import com.vr.autorizador.controller.cartao.exception.CartaoJaExisteException;
-import com.vr.autorizador.domain.Cartao;
+import com.vr.autorizador.domain.cartao.Cartao;
 import com.vr.autorizador.dto.cartao.CartaoNovo;
-import com.vr.autorizador.repository.CartaoRepository;
+import com.vr.autorizador.repository.cartao.CartaoRepository;
 import jakarta.transaction.Transactional;
 
 @Service

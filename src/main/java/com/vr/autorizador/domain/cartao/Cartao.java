@@ -1,4 +1,4 @@
-package com.vr.autorizador.domain;
+package com.vr.autorizador.domain.cartao;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -6,9 +6,11 @@ import com.vr.autorizador.dto.cartao.CartaoNovo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "cartao")
 public class Cartao {
 
 	@Id
@@ -24,9 +26,9 @@ public class Cartao {
 	public Cartao() {
 	}
 
-	public Cartao(CartaoNovo cartaoNovoDto) {
-		this.numeroCartao = cartaoNovoDto.getNumeroCartao();
-		this.senha = cartaoNovoDto.getSenha();
+	public Cartao(CartaoNovo cartaoNovo) {
+		this.numeroCartao = cartaoNovo.getNumeroCartao();
+		this.senha = cartaoNovo.getSenha();
 		this.saldo = BigDecimal.valueOf(500.00).setScale(2, RoundingMode.DOWN);
 	}
 
@@ -59,35 +61,9 @@ public class Cartao {
 	public void setSaldo(BigDecimal saldo) {
 		this.saldo = saldo;
 	}
-
-	@Override
-	public String toString() {
-		return "Cartao [numeroCartao=" + numeroCartao + ", senha=" + senha + ", saldo=" + saldo + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((numeroCartao == null) ? 0 : numeroCartao.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Cartao other = (Cartao) obj;
-		if (numeroCartao == null) {
-			if (other.numeroCartao != null)
-				return false;
-		} else if (!numeroCartao.equals(other.numeroCartao))
-			return false;
-		return true;
+	
+	public void debitar(BigDecimal valor) {
+		this.saldo = this.saldo.subtract(valor);
 	}
 
 }
