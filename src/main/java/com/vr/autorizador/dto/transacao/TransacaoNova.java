@@ -1,6 +1,8 @@
 package com.vr.autorizador.dto.transacao;
 
 import java.math.BigDecimal;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -8,13 +10,16 @@ public class TransacaoNova {
 
 	@NotNull
 	@NotBlank
+	@Schema(description = "Número do cartão", example = "4000000000000001")
 	private String numeroCartao;
 
 	@NotNull
 	@NotBlank
+	@Schema(description = "Senha do cartão", example = "1234")
 	private String senhaCartao;
 
 	@NotNull
+	@Schema(description = "Valor da transação", example = "50.00")
 	private BigDecimal valor;
 
 	public TransacaoNova() {

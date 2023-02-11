@@ -13,15 +13,26 @@ import com.vr.autorizador.controller.transacao.exception.SaldoInsuficienteExcept
 import com.vr.autorizador.controller.transacao.exception.SenhaInvalidaException;
 import com.vr.autorizador.dto.transacao.TransacaoNova;
 import com.vr.autorizador.service.transacao.TransacaoService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
+@Tag(name = "Transação", description = "Transação de cartões")
 @RequestMapping(value = "/transacoes")
 public class TransacaoController {
 
 	@Autowired
 	private TransacaoService transacaoService;
 
+	@Operation(summary = "Cria uma transação")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "201", description = "Created", content = @Content(mediaType = "application/json", schema = @Schema(implementation = TransacaoEnum.class))),
+			@ApiResponse(responseCode = "422", description = "Unprocessable Entity", content = @Content(mediaType = "application/json", schema = @Schema(implementation = TransacaoEnum.class))), })
 	@PostMapping
 	public ResponseEntity<TransacaoEnum> transacao(@RequestBody @Valid TransacaoNova transacaoNova) {
 		try {

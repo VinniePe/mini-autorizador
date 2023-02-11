@@ -1,5 +1,6 @@
 package com.vr.autorizador.dto.cartao;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -8,11 +9,13 @@ public class CartaoNovo {
 	@NotNull
 	@Size(min = 16, message = "O cartão deve ter 16 números")
 	@Size(max = 16, message = "O cartão deve ter 16 números")
+	@Schema(description = "Número do cartão", example = "4000000000000001")
 	private String numeroCartao;
 
 	@NotNull
 	@Size(min = 4, message = "A senha deve ter 4 números")
 	@Size(max = 4, message = "A senha deve ter 4 números")
+	@Schema(description = "Senha do cartão", example = "1234")
 	private String senha;
 
 	public CartaoNovo() {
