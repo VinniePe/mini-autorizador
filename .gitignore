@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+/docker/rabbitmq-data
+/docker/mongodb-data
