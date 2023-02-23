@@ -1,5 +1,6 @@
 package com.vr.autorizador.domain.cartao;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import com.vr.autorizador.dto.cartao.CartaoNovo;
@@ -11,7 +12,9 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "cartao")
-public class Cartao {
+public class Cartao implements Serializable  {
+
+	private static final long serialVersionUID = 7636172071782978562L;
 
 	@Id
 	@Column(unique = true)
@@ -66,4 +69,9 @@ public class Cartao {
 		this.saldo = this.saldo.subtract(valor);
 	}
 
+	@Override
+	public String toString() {
+		return "Cartao [numeroCartao=" + numeroCartao + ", senha=" + senha + ", saldo=" + saldo + "]";
+	}
+	
 }

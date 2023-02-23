@@ -1,10 +1,13 @@
 package com.vr.autorizador.dto.cartao;
 
+import java.io.Serializable;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public class CartaoNovo {
+public class CartaoNovo implements Serializable  {
+
+	private static final long serialVersionUID = -6136282345225004572L;
 
 	@NotNull
 	@Size(min = 16, message = "O cartão deve ter 16 números")
@@ -40,6 +43,11 @@ public class CartaoNovo {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	@Override
+	public String toString() {
+		return "Cartao [numeroCartao=" + numeroCartao + ", senha=" + senha + "]";
 	}
 
 }

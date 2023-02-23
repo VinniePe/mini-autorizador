@@ -3,11 +3,20 @@ spring:
     hibernate:
       ddl-auto: update
     database: mysql
-    database-platform: org.hibernate.dialect.MySQL57Dialect
+    database-platform: org.hibernate.dialect.MySQLDialect
   datasource:
     url: ${DATABASE_URL:jdbc:mysql://localhost:3306/miniautorizador}
     username: root
     password:
+  rabbitmq:
+    listener:
+      simple:
+        retry:
+          enabled: true
+          initial-interval: 5s
+          max-attempts: 3
+          max-interval: 10s
+          multiplier: 2
 
 server:
   error:
